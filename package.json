@@ -1,0 +1,19 @@
+{
+  "name": "hue-echonet-lite",
+  "version": "0.0.1",
+  "description": "This module provides a gateway between Philips hue and ECHONET Lite protocol.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository" :
+  {
+    "type" : "git",
+    "url" : "https://github.com/Hiroshi-Sugimura/hue-echonet-lite.js"
+  },
+  "author": {
+    "name": "Hiroshi SUGIMURA"
+  },
+  "license": "MIT",
+  "Keywords": ["ECHONET Lite", "Smart house", "IoT", "Home appliances", "Philips hue"]
+}
