@@ -3,6 +3,7 @@
 //	$Rev: 9680 $
 //	Copyright (C) Hiroshi SUGIMURA 2013.09.27 - above.
 //////////////////////////////////////////////////////////////////////
+// "use strict";
 
 //////////////////////////////////////////////////////////////////////
 var hue = require("node-hue-api");  // 事前にnpmでnode-hue-apiをインストールしておく
@@ -62,7 +63,8 @@ HC.initialize = function(developper, num, el)
 	HC.devName = developper;
 
 	// Bridge検索
-	hue.locateBridges().then(HC.displayBridges).fail(HC.displayError).done();
+	// hue.locateBridges().then(HC.displayBridges).fail(HC.displayError).done();
+	hue.nupnpSearch().then(HC.displayBridges).done();
 
 	HC.numOfLight = num;
 
@@ -92,9 +94,8 @@ HC.getHueJSON = function(callback)
 };
 
 //////////////////////////////////////////////////////////////////////
-// ECHONET Lite用ライブラリ
+// 電源状態ライブラリ
 
-// setter
 HC.setHueOn = function(channel)
 {
 	// console.dir("hue on.");
