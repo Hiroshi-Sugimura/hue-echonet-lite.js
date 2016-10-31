@@ -1,6 +1,6 @@
 //////////////////////////////////////////////////////////////////////
-//	$Date:: 2016-05-30 15:19:10 +0900#$
-//	$Rev: 9680 $
+//	$Date:: 2016-10-31 18:51:03 +0900#$
+//	$Rev: 10276 $
 //	Copyright (C) Hiroshi SUGIMURA 2013.09.27 - above.
 //////////////////////////////////////////////////////////////////////
 // "use strict";
@@ -34,9 +34,24 @@ var lightingsObj = {
 HC.displayBridges = function(bridge)
 {
 	console.log("Hue Bridges Found: " + JSON.stringify(bridge));
-	HC.hueip = bridge[0].ipaddress;
-	console.log("hue-BridgesIP: "+ HC.hueip);
-	HC.api = new hue.HueApi( HC.hueip, HC.devName );
+	// fetch developer
+	bridge.forEach( function(element) {
+		var h = new hue.HueApi( element.ipaddress, HC.devName );
+
+		h.config( function(err, config) {
+			if (err) throw err;
+
+			if( config.whitelist ) {
+				// この中に入れたということはdevNameが正しい。ターゲットブリッジをこれに決める
+				HC.hueip = element.ipaddress;
+				HC.api = new hue.HueApi( HC.hueip, HC.devName );
+				console.log("hue-BridgesIP: "+ HC.hueip);
+				return;
+			}else{
+				console.log( "Not target or devName isn't registered: " + element.ipaddress );
+			}
+		});
+	});
 };
 
 // 変更命令の結果

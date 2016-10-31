@@ -7,7 +7,7 @@ ECHONET Liteプロトコルはスマートハウス機器の通信プロトコ�
 
 内部ではnode-hue-apiとechonet-liteモジュールに依存しています．
 
-The module 'hue-echonet-lite' depends on node-hue-api and echonet-lite.
+The module 'hue-echonet-lite' depends on node-hue-api.js and echonet-lite.js.
 
 
 ## Install
@@ -136,6 +136,9 @@ You can install the module as following command.
 ## 攻略情報
 
 Demosを見てください。
+なお，RGBとHSV，xyYに関する計算についてはPhilips Hueスターターセットに入ってるランプの測定値から式を作っています。
+この電球は緑を持っていないのでGが出ませんし，実はランプそのものがy=2.0のガンマ特性を持っているので，そのあたりの補正が入っています。
+Philips Hue Lightstripあたりを使う場合は通常のRGB LEDランプのように使用できると思いますから，計算式を変えたほうがよいかもしれません。
 
 
 ## Author
@@ -152,6 +155,12 @@ SUGIMURA, Hiroshi
 
 
 ## Log
+
+0.0.5 developer nameを確認するようにした。lan内に複数ブリッジある時にうまくゆく。
+
+0.0.4 dependenciesが理想とちがったのでやめる。
+
+0.0.3 bug fix
 
 0.0.2 node-hue-api 2.3.0に対応，dependenciesの追加とnupnpSearch対応。
 
